@@ -13,15 +13,15 @@ module "vpc" {
 
   name   = "changecx-vpc"
 
-  cidr   = "20.10.0.0/16" # 10.0.0.0/8 is reserved for EC2-Classic
+  cidr   = "10.10.0.0/16" # 10.0.0.0/8 is reserved for EC2-Classic
 
-  azs                 = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
-  private_subnets     = ["20.10.1.0/24", "20.10.2.0/24", "20.10.3.0/24"]
-  public_subnets      = ["20.10.11.0/24", "20.10.12.0/24", "20.10.13.0/24"]
-  database_subnets    = ["20.10.21.0/24", "20.10.22.0/24", "20.10.23.0/24"]
-  elasticache_subnets = ["20.10.31.0/24", "20.10.32.0/24", "20.10.33.0/24"]
-  redshift_subnets    = ["20.10.41.0/24", "20.10.42.0/24", "20.10.43.0/24"]
-  intra_subnets       = ["20.10.51.0/24", "20.10.52.0/24", "20.10.53.0/24"]
+  azs                 = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  private_subnets     = ["10.10.1.0/24", "10.10.2.0/24", "10.10.3.0/24"]
+  public_subnets      = ["10.10.11.0/24", "10.10.12.0/24", "10.10.13.0/24"]
+  database_subnets    = ["10.10.21.0/24", "10.10.22.0/24", "10.10.23.0/24"]
+  elasticache_subnets = ["10.10.31.0/24", "10.10.32.0/24", "10.10.33.0/24"]
+  redshift_subnets    = ["10.10.41.0/24", "10.10.42.0/24", "10.10.43.0/24"]
+  intra_subnets       = ["10.10.51.0/24", "10.10.52.0/24", "10.10.53.0/24"]
 
   create_database_subnet_group = false
 
@@ -31,35 +31,35 @@ module "vpc" {
   enable_dns_hostnames = true
   enable_dns_support   = true
 
-  enable_classiclink             = true
-  enable_classiclink_dns_support = true
+  # enable_classiclink             = true
+  # enable_classiclink_dns_support = true
 
   enable_nat_gateway = true
   single_nat_gateway = true
 
-  customer_gateways = {
-    IP1 = {
-      bgp_asn    = 65112
-      ip_address = "1.2.3.4"
-    },
-    IP2 = {
-      bgp_asn    = 65112
-      ip_address = "5.6.7.8"
-    }
-  }
+  #customer_gateways = {
+  #  IP1 = {
+  #    bgp_asn    = 65112
+  #    ip_address = "1.2.3.4"
+  #  },
+  #  IP2 = {
+  #    bgp_asn    = 65112
+  #    ip_address = "5.6.7.8"
+  #  }
+  #}
 
-  enable_vpn_gateway = true
+  # enable_vpn_gateway = true
 
-  enable_dhcp_options              = true
-  dhcp_options_domain_name         = "service.consul"
-  dhcp_options_domain_name_servers = ["127.0.0.1", "10.10.0.2"]
+  # enable_dhcp_options              = true
+  # dhcp_options_domain_name         = "service.consul"
+  # dhcp_options_domain_name_servers = ["127.0.0.1", "10.10.0.2"]
 
   # VPC endpoint for S3
   # Note - S3 Interface type support is only available on AWS provider 3.10 and later
-  enable_s3_endpoint              = true
-  s3_endpoint_type                = "Interface"
-  s3_endpoint_private_dns_enabled = false
-  s3_endpoint_security_group_ids  = [data.aws_security_group.default.id]
+  # enable_s3_endpoint              = true
+  # s3_endpoint_type                = "Interface"
+  # s3_endpoint_private_dns_enabled = false
+  # s3_endpoint_security_group_ids  = [data.aws_security_group.default.id]
 
   # VPC endpoint for DynamoDB
   enable_dynamodb_endpoint = true
@@ -154,7 +154,7 @@ module "vpc" {
 # Data source used to avoid race condition
 data "aws_vpc_endpoint" "dynamodb" {
   vpc_id       = module.vpc.vpc_id
-  service_name = "com.amazonaws.eu-west-1.dynamodb"
+  service_name = "com.amazonaws.us-east-1.dynamodb"
 }
 
 data "aws_iam_policy_document" "dynamodb_endpoint_policy" {

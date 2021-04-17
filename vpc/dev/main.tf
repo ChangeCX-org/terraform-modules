@@ -30,11 +30,11 @@ module "vpc" {
   enable_dynamodb_endpoint = true
 
   public_subnet_tags = {
-    Name = format("%s-subnet-public", var.name)
+    Name = "${var.name}-subnet-public"
   }
 
   private_subnet_tags = {
-    Name = format("%s-subnet-private", var.name)
+    Name = "${var.name}-subnet-private"
   }
 
   tags = {

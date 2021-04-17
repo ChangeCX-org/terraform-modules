@@ -31,10 +31,12 @@ module "vpc" {
 
   public_subnet_tags = {
     Name = "${var.name}-subnet-public"
+    Tier = "Public"
   }
 
   private_subnet_tags = {
     Name = "${var.name}-subnet-private"
+    Tier = "Private"
   }
 
   tags = {

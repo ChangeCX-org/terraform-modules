@@ -3,6 +3,8 @@ provider "aws" {
   profile = var.namespace
 }
 
+data "aws_region" "current" {}
+
 module "vpc" {
   source = "../"
 

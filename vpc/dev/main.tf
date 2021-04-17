@@ -1,21 +1,21 @@
 provider "aws" {
-  region  = "us-east-1"
-  profile = "changecx"
+  region  = var.region
+  profile = var.provider
 }
 
 module "vpc" {
   source = "../"
 
-  name = "changecx-vpc-dev"
+  name = var.name
 
-  cidr = "10.10.0.0/16"
+  cidr = var.cidr
 
-  azs                 = ["us-east-1a", "us-east-1b", "us-east-1c"]
-  private_subnets     = ["10.10.1.0/24", "10.10.2.0/24", "10.10.3.0/24"]
-  public_subnets      = ["10.10.11.0/24", "10.10.12.0/24", "10.10.13.0/24"]
-  database_subnets    = ["10.10.21.0/24", "10.10.22.0/24", "10.10.23.0/24"]
-  elasticache_subnets = ["10.10.31.0/24", "10.10.32.0/24", "10.10.33.0/24"]
-  redshift_subnets    = ["10.10.41.0/24", "10.10.42.0/24", "10.10.43.0/24"]
+  azs                 = var.availability_zones
+  private_subnets     = var.private_subnets
+  public_subnets      = var.public_subnets
+  database_subnets    = var.database_subnets
+  elasticache_subnets = var.elasticache_subnets
+  redshift_subnets    = var.redshift_subnets
 
   create_database_subnet_route_table    = true
   create_elasticache_subnet_route_table = true
@@ -28,19 +28,19 @@ module "vpc" {
   enable_dynamodb_endpoint = true
 
   public_subnet_tags = {
-    Name = "changecx-dev-public"
+    Name = format("%s-subnet-public", var.name)
   }
 
   private_subnet_tags = {
-    Name = "changecx-dev-private"
+    Name = format("%s-subnet-private", var.name)
   }
 
   tags = {
-    Owner       = "changecx"
-    Environment = "dev"
+    Owner       = var.namespace
+    Environment = var.env
   }
 
   vpc_tags = {
-    Name = "changecx-vpc-dev"
+    Name = var.name
   }
 }

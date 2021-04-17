@@ -1,6 +1,6 @@
 provider "aws" {
   region  = var.region
-  profile = var.provider
+  profile = var.namespace
 }
 
 module "vpc" {

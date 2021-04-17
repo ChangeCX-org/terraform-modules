@@ -10,7 +10,7 @@ module "certificate" {
 
   tags = {
     Environment = "prod"
-    Name = "finverse"
+    Name = "changecx"
   }
 }
 
@@ -19,6 +19,6 @@ data "aws_route53_zone" "zone" {
 }
 
 locals {
-  domain_name = "finverselabs.com"
+  domain_name = "changecx.io"
 }
 

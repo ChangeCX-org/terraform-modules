@@ -1,9 +1,3 @@
-variable "provider" {
-  description = "AWS Account"
-  type        = string
-  default     = null
-}
-
 variable "region" {
   description = "region."
   type        = string

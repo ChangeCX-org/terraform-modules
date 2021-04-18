@@ -1,0 +1,27 @@
+[
+  {
+    "cpu": 0,
+    "name": "${name}-${environment}",
+    "image": "${image}",
+    "essential": true,
+    "portMappings": [],
+    "environment": [${all_env_vars}],
+    "logConfiguration": {
+       "logDriver": "awslogs",
+       "options": {
+          "awslogs-group" : "/aws/ecs/${name}-${environment}",
+          "awslogs-region": "${region}",
+          "awslogs-stream-prefix": "${name}"
+        }
+    },
+    "volumes": [],
+    "mountPoints": [],
+    "ulimits": [
+        {
+          "name": "nofile",
+          "softLimit": 500000,
+          "hardLimit": 500000
+        }
+    ]
+  }
+]

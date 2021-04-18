@@ -8,13 +8,55 @@ variable "container_name" {
   description = "The name of the container to associate with the load balancer (as it appears in a container definition)."
 }
 
+variable "cluster_name" {
+  type        = string
+  description = "ecs cluster name."
+}
+
 variable "image" {
   default = "238307161259.dkr.ecr.us-east-1.amazonaws.com/websocket-ticker:dev"
+  type        = string
+  description = "image for container."
 }
 
 variable "container_port" {
   type        = string
   description = "The port on the container to associate with the load balancer."
+}
+
+variable "enable_autoscaling" {
+  type        = number
+  description = "enable_autoscaling."
+}
+
+variable "min_capacity" {
+  type        = number
+  description = "min capacity for autoscaling."
+}
+
+variable "max_capacity" {
+  type        = number
+  description = "max capacity for autoscaling."
+}
+
+variable "scale_up_adjustment" {
+  type        = number
+  description = "scale_up_adjustment."
+}
+
+variable "scale_up_cooldown" {
+  type        = number
+  description = "scale_up_cooldown."
+}
+
+variable "scale_down_adjustment" {
+  type        = number
+  description = "scale_down_adjustment."
+}
+
+variable "scale_down_cooldown" {
+  type        = number
+  description = "scale_down_cooldown."
 }
 
 variable "cluster" {

@@ -123,3 +123,8 @@ variable "vpc_dns_zone_name" {
   type        = string
   description = "Hosted Zone Name."
 }
+
+variable "domain_name" {
+  type        = string
+  description = "domain."
+}

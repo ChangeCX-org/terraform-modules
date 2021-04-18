@@ -139,7 +139,7 @@ resource "aws_security_group_rule" "egress" {
 
 resource "aws_route53_record" "route53" {
   zone_id = var.vpc_dns_zone_id
-  name    = "redis-${var.name}-aws-${var.environment}-${var.region}.finverselabs.com"
+  name    = "redis-${var.name}-aws-${var.environment}-${var.region}.${var.domain_name}"
   type    = "CNAME"
   ttl     = "60"
   records = [join("", aws_elasticache_replication_group.default.*.primary_endpoint_address)]

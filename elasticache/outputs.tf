@@ -57,3 +57,8 @@ output "security_group_egress" {
   value       = aws_security_group.default.egress
   description = "The egress rules of the Redis ElastiCache security group."
 }
+
+output "aws_route53_record" {
+  value       = aws_route53_record.route53.name
+  description = "route 53 record"
+}

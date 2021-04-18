@@ -128,3 +128,8 @@ variable "domain_name" {
   type        = string
   description = "domain."
 }
+
+variable "dns_host_entry" {
+  type        = string
+  description = "dns_host_entry."
+}

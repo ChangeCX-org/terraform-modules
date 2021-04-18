@@ -48,6 +48,11 @@ variable "container_name" {
   description = "The name of the container to associate with the load balancer (as it appears in a container definition)."
 }
 
+variable "health_check_path" {
+  type        = string
+  description = "The name of the container to associate with the load balancer (as it appears in a container definition)."
+}
+
 variable "image" {
   default = "238307161259.dkr.ecr.us-east-1.amazonaws.com/websocket-ticker:dev"
 }

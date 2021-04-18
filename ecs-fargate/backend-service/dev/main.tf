@@ -178,7 +178,7 @@ module "alb" {
   target_type                            = "ip"
   deregistration_delay                   = 600
   slow_start                             = 0
-  health_check_path                      = "/health"
+  health_check_path                      = var.health_check_path
   health_check_healthy_threshold         = 3
   health_check_unhealthy_threshold       = 3
   health_check_timeout                   = 3

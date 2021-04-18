@@ -22,6 +22,8 @@ container_port    = 8080
 
 container_name    = "backend-service-dev"
 
+health_check_path = "/api/healthCheck"
+
 https_port        = 443
 
 http_port         = 80

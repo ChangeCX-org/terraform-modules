@@ -53,24 +53,24 @@ variable "image" {
 }
 
 variable "container_port" {
-  type        = string
+  type        = number
   description = "The port on the container to associate with the load balancer."
 }
 
 variable "target_group_port" {
-  type        = string
+  type        = number
   description = "The port on the container to associate with the load balancer."
 }
 
 variable "https_port" {
-  default     = "443"
-  type        = string
+  default     = 443
+  type        = number
   description = "https port for alb."
 }
 
 variable "http_port" {
-  default     = "80"
-  type        = string
+  default     = 80
+  type        = number
   description = "http port for alb."
 }
 
@@ -111,7 +111,7 @@ variable "assign_public_ip" {
 
 variable "health_check_grace_period_seconds" {
   default     = 60
-  type        = string
+  type        = number
   description = "Seconds to ignore failing load balancer health checks on newly instantiated tasks to prevent premature shutdown, up to 7200."
 }
 

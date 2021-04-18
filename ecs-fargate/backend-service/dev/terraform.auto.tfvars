@@ -12,9 +12,9 @@ description       = "Backend Microservice"
 
 image             = "350730217783.dkr.ecr.us-east-1.amazonaws.com/backend-service:dev"
 
-cpu               = 256
+cpu               = "256"
 
-memory            = 512
+memory            = "512"
 
 domain_name       = "changecx.io"
 

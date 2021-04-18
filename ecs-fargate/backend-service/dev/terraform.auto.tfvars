@@ -20,6 +20,8 @@ domain_name       = "changecx.io"
 
 container_port    = 8080
 
+container_name    = "backend-service-dev"
+
 https_port        = 443
 
 http_port         = 80

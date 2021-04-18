@@ -3,6 +3,11 @@ variable "name" {
   description = "The name of ecs service."
 }
 
+variable "region" {
+  type        = string
+  description = "The name of ecs service."
+}
+
 variable "vpc_name" {
   type        = string
   description = "VPC name."
@@ -48,6 +53,11 @@ variable "image" {
 }
 
 variable "container_port" {
+  type        = string
+  description = "The port on the container to associate with the load balancer."
+}
+
+variable "target_group_port" {
   type        = string
   description = "The port on the container to associate with the load balancer."
 }

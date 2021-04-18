@@ -33,3 +33,5 @@ vpc_dns_zone_id   = "Z0206752GASZGQ1RDVGU"
 vpc_dns_zone_name = "changecx.io."
 
 dns_host_entry    = "backend-service"
+
+certificate_arn   = "arn:aws:acm:us-east-1:350730217783:certificate/6e3aad12-ccc8-4228-9b88-983bea8e247a"

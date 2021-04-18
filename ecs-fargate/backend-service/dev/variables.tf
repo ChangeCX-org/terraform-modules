@@ -74,29 +74,9 @@ variable "http_port" {
   description = "http port for alb."
 }
 
-variable "cluster" {
+variable "certificate_arn" {
   type        = string
-  description = "ARN of an ECS cluster."
-}
-
-variable "subnets" {
-  type        = list(string)
-  description = "The subnets associated with the task or service."
-}
-
-variable "target_group_arn" {
-  type        = string
-  description = "The ARN of the Load Balancer target group to associate with the service."
-}
-
-variable "vpc_id" {
-  type        = string
-  description = "VPC Id to associate with ECS Service."
-}
-
-variable "container_definitions" {
-  type        = string
-  description = "A list of valid container definitions provided as a single valid JSON document."
+  description = "certificate arn."
 }
 
 variable "desired_count" {

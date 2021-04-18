@@ -143,7 +143,7 @@ data "aws_iam_policy" "ecs_task_execution" {
   arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
-resource "aws_ecs_cluster" "user_backend" {
+resource "aws_ecs_cluster" "backend_service" {
   name = var.container_name
 }
 
@@ -153,7 +153,7 @@ module "alb" {
   vpc_id                                 = data.aws_vpc.vpc.id
   subnets                                = [for s in data.aws_subnet.public_subnets : s.id]
   access_logs_bucket                     = module.s3_lb_log.s3_bucket_id
-  certificate_arn                        = "arn:aws:acm:us-east-1:019852877010:certificate/8612cc56-3898-44f5-b583-01ed6685846c"
+  certificate_arn                        = var.certificate_arn
 
   enable_https_listener                  = true
   enable_http_listener                   = true
@@ -163,7 +163,7 @@ module "alb" {
   idle_timeout                           = 120
   enable_http2                           = false
   ip_address_type                        = "ipv4"
-  access_logs_prefix                     = "user_backend"
+  access_logs_prefix                     = var.name
   access_logs_enabled                    = true
   ssl_policy                             = "ELBSecurityPolicy-2016-08"
   https_port                             = var.https_port

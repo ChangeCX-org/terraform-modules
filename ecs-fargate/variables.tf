@@ -9,7 +9,8 @@ variable "container_name" {
 }
 
 variable "image" {
-  default = "238307161259.dkr.ecr.us-east-1.amazonaws.com/websocket-ticker:dev"
+  type        = string
+  description = "docker image."
 }
 
 variable "container_port" {
@@ -43,9 +44,45 @@ variable "container_definitions" {
 }
 
 variable "desired_count" {
-  default     = 0
+  default     = 1
   type        = string
   description = "The number of instances of the task definition to place and keep running."
+}
+
+variable "min_capacity" {
+  default     = 1
+  type        = number
+  description = "min capacity for autoscale group."
+}
+
+variable "scale_up_adjustment" {
+  default     = 1
+  type        = number
+  description = "scale_up_adjustment."
+}
+
+variable "scale_up_cooldown" {
+  default     = 1
+  type        = number
+  description = "scale_up_cooldown."
+}
+
+variable "scale_down_adjustment" {
+  default     = 1
+  type        = number
+  description = "scale_down_adjustment."
+}
+
+variable "scale_down_cooldown" {
+  default     = 1
+  type        = number
+  description = "scale_down_cooldown."
+}
+
+variable "max_capacity" {
+  default     = 1
+  type        = number
+  description = "max capacity for autoscale group."
 }
 
 variable "deployment_maximum_percent" {

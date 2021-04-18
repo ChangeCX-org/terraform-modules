@@ -113,13 +113,11 @@ variable "region" {
 }
 
 variable "vpc_dns_zone_id" {
-  default     = "Z019847324VXSJ595M5RD"
   type        = string
   description = "Hosted Zone ID."
 }
 
 variable "vpc_dns_zone_name" {
-  default     = "finverselabs.com."
   type        = string
   description = "Hosted Zone Name."
 }

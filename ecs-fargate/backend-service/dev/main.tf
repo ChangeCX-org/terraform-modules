@@ -41,7 +41,7 @@ module "ecs_fargate" {
   name             = var.container_name
   container_name   = var.container_name
   container_port   = var.container_port
-  cluster          = aws_ecs_cluster.user_backend.arn
+  cluster          = aws_ecs_cluster.backend_service.arn
   subnets          = [for s in data.aws_subnet.public_subnets : s.id]
   target_group_arn = module.alb.alb_target_group_arn
   vpc_id           = data.aws_vpc.vpc.id

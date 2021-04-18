@@ -195,9 +195,9 @@ module "alb" {
   listener_rule_condition_field          = "path-pattern"
   listener_rule_condition_values         = ["/*"]
   enabled                                = true
-  vpc_dns_zone_id                        = "Z019847324VXSJ595M5RD"
-  vpc_dns_zone_name                      = "finverselabs.com."
-  dns_host_entry                         = "user-backend"
+  vpc_dns_zone_id                        = var.vpc_dns_zone_id
+  vpc_dns_zone_name                      = var.vpc_dns_zone_name
+  dns_host_entry                         = var.dns_host_entry
 
   tags = {
     Terraform        = "True"

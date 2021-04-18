@@ -13,6 +13,21 @@ variable "domain_name" {
   description = "domain name."
 }
 
+variable "vpc_dns_zone_id" {
+  type        = string
+  description = "dns zone id."
+}
+
+variable "vpc_dns_zone_name" {
+  type        = string
+  description = "dns zone name."
+}
+
+variable "dns_host_entry" {
+  type        = string
+  description = "dns host entry."
+}
+
 variable "env" {
   type        = string
   description = "environment name."

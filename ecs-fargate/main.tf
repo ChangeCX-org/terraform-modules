@@ -106,53 +106,6 @@ resource "aws_ecs_service" "default" {
   }
 }
 
-resource "aws_appautoscaling_target" "default" {
-  count              = 1
-  service_namespace  = "ecs"
-  resource_id        = "service/${var.cluster}/${var.name}"
-  scalable_dimension = "ecs:service:DesiredCount"
-  min_capacity       = var.min_capacity
-  max_capacity       = var.max_capacity
-}
-
-resource "aws_appautoscaling_policy" "up" {
-  count              = 1
-  name               = "scale_up"
-  service_namespace  = "ecs"
-  resource_id        = "service/${var.cluster}/${var.name}"
-  scalable_dimension = "ecs:service:DesiredCount"
-
-  step_scaling_policy_configuration {
-    adjustment_type         = "ChangeInCapacity"
-    cooldown                = var.scale_up_cooldown
-    metric_aggregation_type = "Average"
-
-    step_adjustment {
-      metric_interval_lower_bound = 0
-      scaling_adjustment          = var.scale_up_adjustment
-    }
-  }
-}
-
-resource "aws_appautoscaling_policy" "down" {
-  count              = 1
-  name               = "scale_down"
-  service_namespace  = "ecs"
-  resource_id        = "service/${var.cluster}/${var.name}"
-  scalable_dimension = "ecs:service:DesiredCount"
-
-  step_scaling_policy_configuration {
-    adjustment_type         = "ChangeInCapacity"
-    cooldown                = var.scale_down_cooldown
-    metric_aggregation_type = "Average"
-
-    step_adjustment {
-      metric_interval_upper_bound = 0
-      scaling_adjustment          = var.scale_down_adjustment
-    }
-  }
-}
-
 # Security Group for ECS Service
 #
 # NOTE: At this time you cannot use a Security Group with in-line rules

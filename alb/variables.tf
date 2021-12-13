@@ -244,6 +244,30 @@ variable "vpc_dns_zone_name" {
   description = "Hosted Zone Name."
 }
 
+variable "stickiness_enabled" {
+  default     = false
+  type        = bool
+  description = "load balancer session stickiness enabled"
+}
+
+variable "stickiness_type" {
+  default     = "app_cookie"
+  type        = string
+  description = "stickiness_type"
+}
+
+variable "stickiness_cookie_name" {
+  default     = "default"
+  type        = string
+  description = "stickiness_cookie_name"
+}
+
+variable "stickiness_cookie_duration" {
+  default     = 86400
+  type        = number
+  description = "stickiness_cookie_duration"
+}
+
 variable "dns_host_entry" {
   default     = "socket"
   type        = string

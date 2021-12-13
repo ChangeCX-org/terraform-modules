@@ -55,6 +55,13 @@ resource "aws_alb_target_group" "alb" {
     matcher             = var.health_check_matcher
   }
 
+  stickiness {
+    type = var.stickiness_type
+    enabled = var.stickiness_enabled
+    cookie_name = var.stickiness_cookie_name
+    cookie_duration = var.stickiness_cookie_duration
+  }
+
   depends_on = [
     aws_alb.alb,
   ]

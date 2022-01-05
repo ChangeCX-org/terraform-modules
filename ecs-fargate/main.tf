@@ -65,22 +65,22 @@ resource "aws_ecs_service" "default" {
   # After you create a service, the load balancer name or target group ARN, container name,
   # and container port specified in the service definition are immutable.
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-load-balancing.html#load-balancing-concepts
-  load_balancer {
-    # The ARN of the Load Balancer target group to associate with the service.
-    target_group_arn = var.target_group_arn
-
-    # The name of the container to associate with the load balancer (as it appears in a container definition).
-    container_name = var.container_name
-
-    # The port on the container to associate with the load balancer.
-    container_port = var.container_port
-  }
+#  load_balancer {
+#    # The ARN of the Load Balancer target group to associate with the service.
+#    target_group_arn = var.target_group_arn
+#
+#    # The name of the container to associate with the load balancer (as it appears in a container definition).
+#    container_name = var.container_name
+#
+#    # The port on the container to associate with the load balancer.
+#    container_port = var.container_port
+#  }
 
   dynamic "load_balancer" {
-    for_each = var.create_other_alb
+    for_each = var.target_groups
     content {
       # The ARN of the Load Balancer target group to associate with the service.
-      target_group_arn = var.target_group_arn_2
+      target_group_arn = var.target_group_arn
       # The name of the container to associate with the load balancer (as it appears in a container definition).
       container_name = var.container_name
       # The port on the container to associate with the load balancer.

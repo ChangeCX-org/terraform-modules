@@ -85,7 +85,6 @@ resource "aws_ecs_service" "default" {
       container_name = load_balancer.value.container_name
       # The port on the container to associate with the load balancer.
       container_port = load_balancer.value.container_port
-      elb_name = load_balancer.value.elb_name
     }
 
   }

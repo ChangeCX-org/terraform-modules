@@ -74,6 +74,11 @@ variable "target_group_arn" {
   description = "The ARN of the Load Balancer target group to associate with the service."
 }
 
+variable "target_group_arn_2" {
+  type        = string
+  description = "The ARN of the Load Balancer target group to associate with the service."
+}
+
 variable "vpc_id" {
   type        = string
   description = "VPC Id to associate with ECS Service."
@@ -170,6 +175,12 @@ variable "tags" {
 
 variable "enabled" {
   default     = true
+  type        = string
+  description = "Set to false to prevent the module from creating anything."
+}
+
+variable "create_other_alb" {
+  default     = false
   type        = string
   description = "Set to false to prevent the module from creating anything."
 }

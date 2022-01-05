@@ -76,6 +76,19 @@ resource "aws_ecs_service" "default" {
     container_port = var.container_port
   }
 
+  load_balancer {
+    count = var.create_other_alb ? 1 : 0
+    # The ARN of the Load Balancer target group to associate with the service.
+    target_group_arn = var.target_group_arn_2
+
+    # The name of the container to associate with the load balancer (as it appears in a container definition).
+    container_name = var.container_name
+
+    # The port on the container to associate with the load balancer.
+    container_port = var.container_port
+  }
+
+
   # If your service's tasks take a while to start and respond to Elastic Load Balancing health checks,
   # you can specify a health check grace period of up to 7,200 seconds. This grace period can prevent
   # the service scheduler from marking tasks as unhealthy and stopping them before they have time to come up.

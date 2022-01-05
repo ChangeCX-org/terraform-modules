@@ -76,16 +76,17 @@ resource "aws_ecs_service" "default" {
     container_port = var.container_port
   }
 
-  load_balancer {
-    count = var.create_other_alb ? 1 : 0
-    # The ARN of the Load Balancer target group to associate with the service.
-    target_group_arn = var.target_group_arn_2
+  dynamic "load_balancer" {
+    for_each = var.create_other_alb
+    content {
+      # The ARN of the Load Balancer target group to associate with the service.
+      target_group_arn = var.target_group_arn_2
+      # The name of the container to associate with the load balancer (as it appears in a container definition).
+      container_name = var.container_name
+      # The port on the container to associate with the load balancer.
+      container_port = var.container_port
+    }
 
-    # The name of the container to associate with the load balancer (as it appears in a container definition).
-    container_name = var.container_name
-
-    # The port on the container to associate with the load balancer.
-    container_port = var.container_port
   }
 
 

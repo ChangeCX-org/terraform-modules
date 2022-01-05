@@ -80,11 +80,12 @@ resource "aws_ecs_service" "default" {
     for_each = var.target_groups
     content {
       # The ARN of the Load Balancer target group to associate with the service.
-      target_group_arn = var.target_group_arn
+      target_group_arn = load_balancer.value.target_group_arn
       # The name of the container to associate with the load balancer (as it appears in a container definition).
-      container_name = var.container_name
+      container_name = load_balancer.value.container_name
       # The port on the container to associate with the load balancer.
-      container_port = var.container_port
+      container_port = load_balancer.value.container_port
+      elb_name = load_balancer.value.elb_name
     }
 
   }

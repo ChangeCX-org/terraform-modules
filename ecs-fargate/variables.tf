@@ -74,11 +74,6 @@ variable "target_group_arn" {
   description = "The ARN of the Load Balancer target group to associate with the service."
 }
 
-variable "target_group_arn_2" {
-  type        = string
-  description = "The ARN of the Load Balancer target group to associate with the service."
-}
-
 variable "vpc_id" {
   type        = string
   description = "VPC Id to associate with ECS Service."

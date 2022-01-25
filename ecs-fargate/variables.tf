@@ -196,3 +196,33 @@ variable "target_groups" {
   type        = list
   description = "list of target groups"
 }
+
+variable "volume_name" {
+  default     = ""
+  type        = string
+  description = "volume_name"
+}
+
+variable "file_system_id" {
+  default     = ""
+  type        = string
+  description = "file_system_id"
+}
+
+variable "root_directory" {
+  default     = ""
+  type        = string
+  description = "root_directory"
+}
+
+variable "transit_encryption" {
+  default     = ""
+  type        = string
+  description = "transit_encryption"
+}
+
+variable "access_point_id" {
+  default     = ""
+  type        = string
+  description = "access_point_id"
+}

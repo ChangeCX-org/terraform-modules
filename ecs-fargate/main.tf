@@ -8,10 +8,20 @@
 #
 # The Fargate launch type allows you to run your containerized applications
 # without the need to provision and manage the backend infrastructure.
+# without the need to provision and manage the backend infrastructure.
 #
 # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service_definition_parameters.html
 
 # https://www.terraform.io/docs/providers/aws/r/ecs_service.html
+
+resource "aws_ecs_cluster" "cluster" {
+  name = var.cluster
+
+  setting {
+    name  = "containerInsights"
+    value = "enabled"
+  }
+}
 resource "aws_ecs_service" "default" {
   count = var.enabled ? 1 : 0
 
@@ -87,6 +97,19 @@ resource "aws_ecs_service" "default" {
       container_port = load_balancer.value.container_port
     }
 
+  }
+
+  volume {
+    name = var.volume_name
+
+    efs_volume_configuration {
+      file_system_id          = var.file_system_id
+      root_directory          = var.root_directory
+      transit_encryption      = var.transit_encryption
+      authorization_config {
+        access_point_id = var.access_point_id
+      }
+    }
   }
 
 
@@ -226,7 +249,6 @@ resource "aws_ecs_task_definition" "default" {
   # A list of container definitions in JSON format that describe the different containers that make up your task.
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definitions
   container_definitions = var.container_definitions
-
   # The number of CPU units used by the task.
   # It can be expressed as an integer using CPU units, for example 1024, or as a string using vCPUs, for example 1 vCPU or 1 vcpu.
   # String values are converted to an integer indicating the CPU units when the task definition is registered.

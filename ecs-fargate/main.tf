@@ -14,14 +14,15 @@
 
 # https://www.terraform.io/docs/providers/aws/r/ecs_service.html
 
-resource "aws_ecs_cluster" "cluster" {
-  name = var.cluster
+#resource "aws_ecs_cluster" "cluster" {
+#  name = var.cluster
+#
+#  setting {
+#    name  = "containerInsights"
+#    value = "enabled"
+#  }
+#}
 
-  setting {
-    name  = "containerInsights"
-    value = "enabled"
-  }
-}
 resource "aws_ecs_service" "default" {
   count = var.enabled ? 1 : 0
 

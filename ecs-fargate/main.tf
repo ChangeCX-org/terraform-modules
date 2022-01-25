@@ -99,19 +99,6 @@ resource "aws_ecs_service" "default" {
 
   }
 
-  volume {
-    name = var.volume_name
-
-    efs_volume_configuration {
-      file_system_id          = var.file_system_id
-      root_directory          = var.root_directory
-      transit_encryption      = var.transit_encryption
-      authorization_config {
-        access_point_id = var.access_point_id
-      }
-    }
-  }
-
 
   # If your service's tasks take a while to start and respond to Elastic Load Balancing health checks,
   # you can specify a health check grace period of up to 7,200 seconds. This grace period can prevent
@@ -249,6 +236,19 @@ resource "aws_ecs_task_definition" "default" {
   # A list of container definitions in JSON format that describe the different containers that make up your task.
   # https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#container_definitions
   container_definitions = var.container_definitions
+
+  volume {
+    name = var.volume_name
+
+    efs_volume_configuration {
+      file_system_id          = var.file_system_id
+      root_directory          = var.root_directory
+      transit_encryption      = var.transit_encryption
+      authorization_config {
+        access_point_id = var.access_point_id
+      }
+    }
+  }
   # The number of CPU units used by the task.
   # It can be expressed as an integer using CPU units, for example 1024, or as a string using vCPUs, for example 1 vCPU or 1 vcpu.
   # String values are converted to an integer indicating the CPU units when the task definition is registered.

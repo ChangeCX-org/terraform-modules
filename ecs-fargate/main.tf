@@ -244,7 +244,6 @@ resource "aws_ecs_task_definition" "default" {
     efs_volume_configuration {
       file_system_id          = var.file_system_id
       root_directory          = var.root_directory
-      transit_encryption      = var.transit_encryption
       authorization_config {
         access_point_id = var.access_point_id
       }

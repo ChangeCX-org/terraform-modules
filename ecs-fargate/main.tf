@@ -243,10 +243,7 @@ resource "aws_ecs_task_definition" "default" {
 
     efs_volume_configuration {
       file_system_id          = var.file_system_id
-      root_directory          = var.root_directory
-      authorization_config {
-        access_point_id = var.access_point_id
-      }
+      transit_encryption      = var.transit_encryption
     }
   }
   # The number of CPU units used by the task.
